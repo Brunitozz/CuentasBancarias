@@ -1,1 +1,62 @@
+Clase Corriente viene-de Cuenta
+    Atributos
+        sobregiro
+    Metodos
+        Constructor(numero, nombreCliente, saldo) sobreescribir sobrecargado
+        Constructor(numero, nombreCliente, saldo, sobregiro) sobreescribir sobrecargado
+        ObtenerSobregiro -->
+        ColocarSobregiro(sobregiro)
+        Depositar(monto) --> sobreescribir
+        Retirar(monto) --> sobreescribir
+        CalcularIntereses(porcentaje) --> sobreescribir
+        CalcularMantenimiento(porcentaje) 
+    fMetodos
+fClase
 
+Metodo Corriente.Constructor (numero, nombreCliente, saldo) heredado-de Constructor (numero, nombreCliente, saldo)
+    sobregiro <-- ObtenerSaldo() * 1
+fMetodo
+
+Metodo Corriente.Constructor (numero, nombreCliente, saldo, sobregiro) heredado-de Constructor(numero, nombreCliente, saldo)
+    Esto.sobregiro <-- sobregiro
+fMetodo
+
+Metodo Corriente.ObtenerSobregiro -->
+    retornar sobregiro
+fMetodo
+
+Metodo Corriente.ColocarSobregiro(sobregiro)
+    Esto.sobregiro <-- sobregiro
+fMetodo
+
+Metodo Corriente.Depositar(monto)
+    ColocarSaldo(ObtenerSaldo() + monto)
+    retornar Verdad
+fMetodo
+
+Metodo Corriente.Retirar(monto)
+    si (monto<=ObtenerSaldo()+sobregiro) entonces
+        si (monto <= ObtenerSaldo()) entonces
+            ColocarSaldo(ObtenerSaldo-monto)
+            retornar Verdad     
+        sino
+            sobregiro <-- sobregiro + ObtenerSaldo - monto 
+            ColocarSaldo(0)
+        fsi
+        retornar Verdad
+    sino
+        retornar Falso
+    fsi
+fMetodo 
+
+Metodo Corriente.CalcularIntereses(porcentaje)
+    intereses <-- ObtenerSaldo() * porcentaje
+    ColocarSaldo(ObtenerSaldo + intereses)
+    retornar Verdad
+fMetodo
+
+Metodo Corriente.CalcularMantenimiento(porcentaje)
+    mantenimiento <-- ObtenerSaldo() * porcentaje
+    ColocarSaldo(ObtenerSaldo() - mantenimiento )
+    retornar Verdad
+fMetodo

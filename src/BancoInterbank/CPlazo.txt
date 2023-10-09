@@ -1,1 +1,72 @@
+Clase Plazo viene-de Cuenta
+    Atributos
+        periodosMeses
+        fechaVencimiento
+        montoMinimo
+    Metodos 
+        Constructor(numero, nombreCliente, saldo) --> sobreescribir
+        ObtenerPeriodosMeses -->
+        ObtenerFechaVencimiento -->
+        ColocarPeriodosMeses(periodosMeses)
+        ColocarFechaVencimiento(fechaVencimiento)
+        Depositar(monto) --> sobreescribir //Booleano
+        Retirar(monto) --> sobreescribir //Booleano
+        CalcularIntereses(porcentaje)--> sobreescribir //Booleano
+    fMetodos
+fClase
+
+Metodo Plazo.Constructor(numero, nombreCliente, saldo) heredado-de Constructor(numero, nombreCliente, saldo, fechaApertura)
+    periodosMeses <-- 6
+    fechaVencimiento <-- FECHA_HOY + 6
+fMetodo
+
+Metodo Plazo.ObtenerPeriodosMeses -->
+    retornar periodosMeses
+fMetodo
+
+Metodo Plazo.ObtenerFechaVencimiento -->
+    retornar fechaVencimiento
+fMetodo
+
+Metodo Plazo.ColocarPeriodosMeses(periodosMeses)
+    Esto.periodosMeses <-- periodosMeses
+fMetodo 
+
+Metodo Plazo.ColocarFechaVencimiento(fechaVencimiento)
+    Esto.fechaVencimiento <-- fechaVencimiento
+fMetodo 
+
+Metodo Plazo.Depositar(monto)
+    si (FECHA_HOY >= fechaVencimiento) entonces
+        ColocarSaldo(ObtenerSaldo() + monto)
+        retornar Verdad
+    sino
+        retornar Falso
+    fsi
+fMetodo 
+
+Metodo Plazo.Retirar(monto)
+    si (FECHA_HOY >= fechaVencimiento) entonces
+        si (monto<=ObtenerSaldo) entonces
+            ColocarSaldo(ObtenerSaldo() - monto)
+            retornar Verdad
+        sino
+            Escribir("El monto de excede al Saldo")
+            retornar Falso
+        fsi
+    sino
+        retornar Falso
+    fsi
+fMetodo
+
+Metodo Plazo.CalcularIntereses(porcentaje)
+    Flotante intereses
+    si (FECHA_HOY >= fechaVencimiento) entonces
+        Intereses <-- ObtenerSaldo() * porcentaje
+        ColocarSaldo(ObtenerSaldo() + intereses)
+        retornar Verdad
+    sino
+        retornar Falso
+    fsi
+fMetodo
 

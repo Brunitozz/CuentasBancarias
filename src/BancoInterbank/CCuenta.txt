@@ -1,1 +1,61 @@
+Clase Cuenta
+    Atributos
+        numero
+        nombreCliente
+        saldo
+        fechaApertura
+    Metodos
+        Constructor(numero, nombreCliente, saldo, fechaApertura) 
+        ObtenerNumero -->
+        ObtenerNombreCliente -->
+        ObtenerSaldo -->
+        ObtenerFechaApertura -->
+        ColocarNumero(numero)
+        ColocarNombreCliente(nombreCliente)
+        ColocarSaldo(saldo)
+        ColocarFechaApertura(fechaApertura)
+        Depositar(monto)-->abstracto //Booleano
+        Retirar(monto)-->abstracto 
+        CalcularIntereses(porcentaje)-->abstracto
+    fMetodos
+fClase
+
+Metodo Cuenta.Constructor (numero, nombreCliente, saldo, fechaApertura)
+    Esto.numero <-- numero 
+    Esto.nombreCliente <-- nombreCliente
+    Esto.saldo <-- saldo 
+    Esto.fechaApertura <-- fechaApertura
+fMetodo
+
+Metodo Cuenta.ObtenerNumero -->
+    retornar numero
+fMetodo 
+
+Metodo Cuenta.ObtenerNombreCliente -->
+    retornar nombreCliente
+fMetodo
+
+Metodo Cuenta.ObtenerSaldo -->
+    retornar saldo
+fMetodo
+
+Metodo Cuenta.ObtenerFechaApertura -->
+    retornar fechaApertura
+fMetodo
+
+Metodo Cuenta.ColocarNumero(numero)
+    Esto.numero <-- numero
+fMetodo
+
+Metodo Cuenta.ColocarNombreCliente(nombreCliente)
+    Esto.nombreCliente <-- nombreCliente
+fMetodo
+
+Metodo Cuenta.ColocarSaldo(saldo)
+    Esto.saldo <-- saldo
+fMetodo
+
+Metodo Cuenta.ColocarFechaApertura(fechaApertura)
+    Esto.fechaApertura <-- fechaApertura
+fMetodo
 
