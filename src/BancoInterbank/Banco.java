@@ -4,6 +4,7 @@
  */
 package BancoInterbank;
 import java.util.Date;
+import javax.swing.JOptionPane;
 /**
  *
  * @author user
@@ -13,7 +14,7 @@ public class Banco extends javax.swing.JFrame {
     Cuenta[] cuentas; //tamaño de 10
     int num; //contador
     public Banco() {
-        cuentas = new Cuenta[10];
+        cuentas = new Cuenta[1000];
         num = 0;
         initComponents();
         jRadioPlazo.setSelected(true);
@@ -281,6 +282,25 @@ public class Banco extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxConstructorActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String cadena = "";
+        for (int i=0; i<= cuentas.length; i++){
+            if(cuentas[i] != null){
+                cadena += "Cuenta: "+ cuentas[i].getNumero()
+                        + "Cliente: "+ cuentas[i].getNombreCliente()
+                        + "Saldo: "+ cuentas[i].getSaldo()
+                        + "fechaApertura: "+ cuentas[i].getFechaApertura();
+                if(cuentas[i] instanceof Plazo){
+                    Plazo plazoCuenta = (Plazo) cuentas[i];
+                    cadena += "Meses: " + ((Plazo) plazoCuenta).getPeriodosMeses()
+                            + "Fecha Vencimiento: " +((Plazo) plazoCuenta).getFechaVencimiento();
+                }
+                if(cuentas[i] instanceof Corriente){
+                    Corriente corrienteCuenta = (Corriente) cuentas[i];
+                    cadena += "Sobregiro: " + ((Corriente) corrienteCuenta).getSobregiro();
+                }
+            }
+        }
+        System.out.println(cadena);
         //Boton MOSTRAR 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
