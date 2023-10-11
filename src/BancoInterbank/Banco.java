@@ -244,32 +244,31 @@ public class Banco extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         num = num + 1;
-        try{
-            if(num > cuentas.length){
+        try {
+            if (num >= cuentas.length) {
                 throw new IllegalArgumentException("Arreglo lleno");
-            }else{
+            } else {
                 long numero = Long.parseLong(jTextNumero.getText());
                 String nombre = jTextNombre.getText();
                 double saldo = Double.parseDouble(jTextSaldo.getText());
-                Date fechaApertura = new Date();
-                if(jRadioCorriente.getAutoscrolls()){
-                    if(jCheckBoxConstructor.getAutoscrolls()){
+                Date fechaApertura = new Date(); // Obtener la fecha actual
+                if (jRadioCorriente.isSelected()) {
+                    if (jCheckBoxConstructor.isSelected()) {
                         cuentas[num] = new Corriente(numero, nombre, saldo, fechaApertura);
-                    }else{
+                    } else {
                         double sobregiro = Double.parseDouble(jTextSobregiro.getText());
-                        cuentas[num] = new Corriente (sobregiro, numero, nombre, saldo, fechaApertura);
-                    }  
-                }else{
+                        cuentas[num] = new Corriente(sobregiro, numero, nombre, saldo, fechaApertura);
+                    }
+                } else {
                     int periodo = Integer.parseInt(jTextPeriodo.getText());
                     cuentas[num] = new Plazo(numero, nombre, saldo, fechaApertura, periodo);
                 }
             }
-            
-        }catch(IllegalArgumentException rangoExcepcion){
+        } catch (IllegalArgumentException rangoExcepcion) {
             num = cuentas.length;
             rangoExcepcion.getMessage();
         }
-        //Boton AGREGAR    
+        // Boton AGREGAR
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -283,26 +282,28 @@ public class Banco extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String cadena = "";
-        for (int i=0; i<= cuentas.length; i++){
-            if(cuentas[i] != null){
-                cadena += "Cuenta: "+ cuentas[i].getNumero()
-                        + "Cliente: "+ cuentas[i].getNombreCliente()
-                        + "Saldo: "+ cuentas[i].getSaldo()
-                        + "fechaApertura: "+ cuentas[i].getFechaApertura();
-                if(cuentas[i] instanceof Plazo){
-                    Plazo plazoCuenta = (Plazo) cuentas[i];
-                    cadena += "Meses: " + ((Plazo) plazoCuenta).getPeriodosMeses()
-                            + "Fecha Vencimiento: " +((Plazo) plazoCuenta).getFechaVencimiento();
-                }
-                if(cuentas[i] instanceof Corriente){
-                    Corriente corrienteCuenta = (Corriente) cuentas[i];
-                    cadena += "Sobregiro: " + ((Corriente) corrienteCuenta).getSobregiro();
-                }
+    for (int i = 0; i < cuentas.length; i++) {
+        if (cuentas[i] != null) {
+            cadena += "Cuenta: " + cuentas[i].getNumero() +
+                      " Cliente: " + cuentas[i].getNombreCliente() +
+                      " Saldo: " + cuentas[i].getSaldo() +
+                      " fechaApertura: " + cuentas[i].getFechaApertura();
+            
+            if (cuentas[i] instanceof Plazo) {
+                Plazo plazoCuenta = (Plazo) cuentas[i];
+                cadena += " Meses: " + plazoCuenta.getPeriodosMeses() +
+                          " Fecha Vencimiento: " + plazoCuenta.getFechaVencimiento();
+            }
+            
+            if (cuentas[i] instanceof Corriente) {
+                Corriente corrienteCuenta = (Corriente) cuentas[i];
+                cadena += " Sobregiro: " + corrienteCuenta.getSobregiro();
             }
         }
-        System.out.println(cadena);
-        //Boton MOSTRAR 
-        // TODO add your handling code here:
+    }
+    JOptionPane.showMessageDialog(null, cadena);
+    // Boton MOSTRAR 
+    // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jRadioCorrienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioCorrienteActionPerformed
