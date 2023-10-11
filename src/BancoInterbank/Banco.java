@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package BancoInterbank;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 /**
  *
@@ -11,9 +14,11 @@ import javax.swing.JOptionPane;
  */
 public class Banco extends javax.swing.JFrame {
 
+    FondoPanel fondo = new FondoPanel();
     Cuenta[] cuentas; //tamaño de 10
     int num; //contador
     public Banco() {
+        this.setContentPane(fondo);
         cuentas = new Cuenta[1000];
         num = 0;
         initComponents();
@@ -31,7 +36,7 @@ public class Banco extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new FondoPanel();
         jLabelNumero = new javax.swing.JLabel();
         jLabelNombre = new javax.swing.JLabel();
         jLabelSaldo = new javax.swing.JLabel();
@@ -53,21 +58,39 @@ public class Banco extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabelNumero.setBackground(null);
+        jLabelNumero.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 10)); // NOI18N
+        jLabelNumero.setForeground(new java.awt.Color(0, 86, 158));
         jLabelNumero.setText("Cuenta:");
         jLabelNumero.setOpaque(true);
 
+        jLabelNombre.setBackground(null);
+        jLabelNombre.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 10)); // NOI18N
+        jLabelNombre.setForeground(new java.awt.Color(0, 86, 158));
         jLabelNombre.setText("Nombre:");
         jLabelNombre.setOpaque(true);
 
+        jLabelSaldo.setBackground(null);
+        jLabelSaldo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 10)); // NOI18N
+        jLabelSaldo.setForeground(new java.awt.Color(0, 86, 158));
         jLabelSaldo.setText("Saldo:");
         jLabelSaldo.setOpaque(true);
 
+        jLabelSobregiro.setBackground(null);
+        jLabelSobregiro.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 10)); // NOI18N
+        jLabelSobregiro.setForeground(new java.awt.Color(0, 86, 158));
         jLabelSobregiro.setText("Sobregiro:");
         jLabelSobregiro.setOpaque(true);
 
+        jLabelPeriodo.setBackground(null);
+        jLabelPeriodo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 10)); // NOI18N
+        jLabelPeriodo.setForeground(new java.awt.Color(0, 86, 158));
         jLabelPeriodo.setText("Periodo:");
         jLabelPeriodo.setOpaque(true);
 
+        jLabelMonto.setBackground(null);
+        jLabelMonto.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 10)); // NOI18N
+        jLabelMonto.setForeground(new java.awt.Color(0, 86, 158));
         jLabelMonto.setText("Monto:");
         jLabelMonto.setOpaque(true);
 
@@ -181,7 +204,7 @@ public class Banco extends javax.swing.JFrame {
                             .addComponent(jLabelNumero)
                             .addGap(52, 52, 52)
                             .addComponent(jTextNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,22 +244,22 @@ public class Banco extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -287,7 +310,7 @@ public class Banco extends javax.swing.JFrame {
             cadena += "Cuenta: " + cuentas[i].getNumero() +
                       "\n Cliente: " + cuentas[i].getNombreCliente() +
                       "\n Saldo: " + cuentas[i].getSaldo() +
-                      "\n fechaApertura: " + cuentas[i].getFechaApertura();
+                      "\n Fecha de Apertura: " + cuentas[i].getFechaApertura();
             
             if (cuentas[i] instanceof Plazo) {
                 Plazo plazoCuenta = (Plazo) cuentas[i];
@@ -386,4 +409,19 @@ public class Banco extends javax.swing.JFrame {
     private javax.swing.JTextField jTextSaldo;
     private javax.swing.JTextField jTextSobregiro;
     // End of variables declaration//GEN-END:variables
+    
+    class FondoPanel extends javax.swing.JPanel{
+        private Image imagen;
+        
+        @Override
+        public void paint(Graphics g){
+            imagen =new ImageIcon(getClass().getResource("/Imagenes/BancoFisi.jpg")).getImage();
+            g.drawImage(imagen,0, 0,getWidth(),getHeight(), this);
+            
+            setOpaque(false);
+            super.paint(g);
+        }
+    }
+
+
 }
