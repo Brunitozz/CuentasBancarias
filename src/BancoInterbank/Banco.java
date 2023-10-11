@@ -285,19 +285,19 @@ public class Banco extends javax.swing.JFrame {
     for (int i = 0; i < cuentas.length; i++) {
         if (cuentas[i] != null) {
             cadena += "Cuenta: " + cuentas[i].getNumero() +
-                      " Cliente: " + cuentas[i].getNombreCliente() +
-                      " Saldo: " + cuentas[i].getSaldo() +
-                      " fechaApertura: " + cuentas[i].getFechaApertura();
+                      "\n Cliente: " + cuentas[i].getNombreCliente() +
+                      "\n Saldo: " + cuentas[i].getSaldo() +
+                      "\n fechaApertura: " + cuentas[i].getFechaApertura();
             
             if (cuentas[i] instanceof Plazo) {
                 Plazo plazoCuenta = (Plazo) cuentas[i];
-                cadena += " Meses: " + plazoCuenta.getPeriodosMeses() +
-                          " Fecha Vencimiento: " + plazoCuenta.getFechaVencimiento();
+                cadena += "\n Meses: " + plazoCuenta.getPeriodosMeses() +
+                          "\n Fecha Vencimiento: " + plazoCuenta.getFechaVencimiento();
             }
             
             if (cuentas[i] instanceof Corriente) {
                 Corriente corrienteCuenta = (Corriente) cuentas[i];
-                cadena += " Sobregiro: " + corrienteCuenta.getSobregiro();
+                cadena += "\n Sobregiro: " + corrienteCuenta.getSobregiro();
             }
         }
     }
