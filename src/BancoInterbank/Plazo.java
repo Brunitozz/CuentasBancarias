@@ -12,8 +12,7 @@ import java.util.Calendar;
 public class Plazo extends Cuenta {
     private int periodosMeses;
     private Date fechaVencimiento;
-    Date fechaHoy = new Date();
-    Plazo cuenta1 = new Plazo(numero, nombreCliente, saldo, fechaApertura);
+    /*Plazo cuenta1 = new Plazo(numero, nombreCliente, saldo, fechaApertura);*/
     public Plazo(long numero, String nombreCliente, double saldo, Date fechaApertura) {
         super(numero, nombreCliente, saldo, fechaApertura);
         periodosMeses = 6;
@@ -26,8 +25,9 @@ public class Plazo extends Cuenta {
 
     @Override
     public boolean depositar(double monto) {
+        Date fechaHoy = new Date();
         if (fechaHoy.compareTo(fechaVencimiento) >= 0) {
-            ((Plazo) cuenta1).setSaldo(((Plazo)cuenta1).getSaldo()+monto);
+            this.setSaldo(this.getSaldo()+monto);
             //ColocarSaldo(ObtenerSaldo() + monto);
             return true;
         } else {
@@ -37,9 +37,10 @@ public class Plazo extends Cuenta {
 
     @Override //sobreescritura
     public boolean retirar(double monto) {
+        Date fechaHoy = new Date();
         if (fechaHoy.compareTo(fechaVencimiento) >= 0) {
-            if(monto<=((Plazo) cuenta1).getSaldo()){
-                ((Plazo) cuenta1).setSaldo(((Plazo)cuenta1).getSaldo()+monto);
+            if(monto<=this.getSaldo()){
+                this.setSaldo(this.getSaldo()+monto);
                 return true;
             }else{
                 return false;
@@ -52,9 +53,10 @@ public class Plazo extends Cuenta {
     @Override
     public boolean calcularIntereses(double porcentaje) {
         double intereses;
+        Date fechaHoy = new Date();
         if(fechaHoy.compareTo(fechaVencimiento) >= 0){
-            intereses = ((Plazo)cuenta1).getSaldo()*porcentaje;
-            ((Plazo)cuenta1).setSaldo(((Plazo)cuenta1).getSaldo()+intereses);
+            intereses = this.getSaldo()*porcentaje;
+            this.setSaldo(this.getSaldo()+intereses);
             return true;
         }else{
             return false;

@@ -10,10 +10,10 @@ import java.util.Date;
  */
 public class Corriente extends Cuenta {
     private double sobregiro;
-    Corriente corriente1 = new Corriente(numero, nombreCliente, saldo, fechaApertura);
+    /*Corriente corriente1 = new Corriente(numero, nombreCliente, saldo, fechaApertura);*/
     public Corriente(long numero, String nombreCliente, double saldo, Date fechaApertura) {
         super(numero, nombreCliente, saldo, fechaApertura);
-        sobregiro = ((Corriente)corriente1).getSaldo()*2;
+        sobregiro = this.getSaldo()*2;
     }
 
     public Corriente(double sobregiro, long numero, String nombreCliente, double saldo, Date fechaApertura) {
@@ -23,19 +23,19 @@ public class Corriente extends Cuenta {
    
     @Override
     public boolean depositar(double monto) {
-        ((Corriente)corriente1).setSaldo(((Corriente)corriente1).getSaldo()+monto);
+        this.setSaldo(this.getSaldo()+monto);
         return true;
     }
 
     @Override
     public boolean retirar(double monto) {
-        if(monto <= ((Corriente)corriente1).getSaldo()+sobregiro){
-                if(monto<=((Corriente)corriente1).getSaldo()){
-                    ((Corriente)corriente1).setSaldo(((Corriente)corriente1).getSaldo()-monto);
+        if(monto <= this.getSaldo()+sobregiro){
+                if(monto<=this.getSaldo()){
+                    this.setSaldo(this.getSaldo() - monto);
                     return true;
                 }else{
-                    sobregiro = sobregiro + ((Corriente)corriente1).getSaldo()-monto;
-                    ((Corriente)corriente1).setSaldo(0);
+                    sobregiro = sobregiro + this.getSaldo()-monto;
+                    this.setSaldo(0);
                 }
                 return true;
         }else{
@@ -46,15 +46,15 @@ public class Corriente extends Cuenta {
     @Override
     public boolean calcularIntereses(double porcentaje) {
         double intereses;
-        intereses = ((Corriente)corriente1).getSaldo()*porcentaje;
-        ((Corriente)corriente1).setSaldo(((Corriente)corriente1).getSaldo()+intereses);
+        intereses = this.getSaldo()*porcentaje;
+        this.setSaldo(this.getSaldo()+intereses);
         return true;
     }
     
     public boolean calcularMantenimiento(double porcentaje){
         double mantenimiento;
-        mantenimiento=((Corriente)corriente1).getSaldo()*porcentaje;
-        ((Corriente)corriente1).setSaldo(((Corriente)corriente1).getSaldo()-mantenimiento);
+        mantenimiento=this.getSaldo()*porcentaje;
+        this.setSaldo(this.getSaldo()-mantenimiento);
         return true;
     }
     /**
