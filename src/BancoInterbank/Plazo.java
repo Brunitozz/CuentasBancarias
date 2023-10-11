@@ -13,7 +13,7 @@ public class Plazo extends Cuenta {
     private int periodosMeses;
     private Date fechaVencimiento;
     /*Plazo cuenta1 = new Plazo(numero, nombreCliente, saldo, fechaApertura);*/
-    public Plazo(long numero, String nombreCliente, double saldo, Date fechaApertura) {
+    public Plazo(long numero, String nombreCliente, double saldo, Date fechaApertura, int periodo) {
         super(numero, nombreCliente, saldo, fechaApertura);
         periodosMeses = 6;
         Calendar calendar = Calendar.getInstance();

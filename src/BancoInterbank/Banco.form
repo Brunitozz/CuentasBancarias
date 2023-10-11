@@ -196,6 +196,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextSobregiro">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextSobregiroActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextSaldo">
           <Events>
@@ -203,6 +206,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextPeriodo">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextPeriodoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextMonto">
         </Component>

@@ -82,9 +82,21 @@ public class Banco extends javax.swing.JFrame {
             }
         });
 
+        jTextSobregiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextSobregiroActionPerformed(evt);
+            }
+        });
+
         jTextSaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextSaldoActionPerformed(evt);
+            }
+        });
+
+        jTextPeriodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextPeriodoActionPerformed(evt);
             }
         });
 
@@ -235,15 +247,20 @@ public class Banco extends javax.swing.JFrame {
             if(num > cuentas.length){
                 throw new IllegalArgumentException("Arreglo lleno");
             }else{
-                int numero = Integer.parseInt(jLabelNumero.getText());
-                String nombre = jLabelNombre.getText();
-                double saldo = Double.parseDouble(jLabelSaldo.getText());
+                long numero = Long.parseLong(jTextNumero.getText());
+                String nombre = jTextNombre.getText();
+                double saldo = Double.parseDouble(jTextSaldo.getText());
                 Date fechaApertura = new Date();
                 if(jRadioCorriente.getAutoscrolls()){
                     if(jCheckBoxConstructor.getAutoscrolls()){
                         cuentas[num] = new Corriente(numero, nombre, saldo, fechaApertura);
-                    }
-                    
+                    }else{
+                        double sobregiro = Double.parseDouble(jTextSobregiro.getText());
+                        cuentas[num] = new Corriente (sobregiro, numero, nombre, saldo, fechaApertura);
+                    }  
+                }else{
+                    int periodo = Integer.parseInt(jTextPeriodo.getText());
+                    cuentas[num] = new Plazo(numero, nombre, saldo, fechaApertura, periodo);
                 }
             }
             
@@ -283,6 +300,14 @@ public class Banco extends javax.swing.JFrame {
     private void jTextSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextSaldoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextSaldoActionPerformed
+
+    private void jTextSobregiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextSobregiroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextSobregiroActionPerformed
+
+    private void jTextPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPeriodoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextPeriodoActionPerformed
 
     /**
      * @param args the command line arguments
